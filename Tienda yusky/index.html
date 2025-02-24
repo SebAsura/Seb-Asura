@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Hamburguesa Bonito</title>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      padding: 0;
+      background: rgb(71,71,71);
+background: linear-gradient(0deg, rgba(71,71,71,1) 0%, rgba(212,207,207,1) 100%);
+
+      font-family: Arial, sans-serif;
+      color: black;
+      transition: background-color 1.3s, color 1.3s;
+      box-sizing: border-box;
+      border: none; /* Elimina bordes predeterminados */
+    }
+
+/* Estilo para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Ajustar el diseño de las tarjetas en pantallas pequeñas */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 15px;
+  }
+  .card {
+    width: 90%; /* Ajustar el ancho */
+    margin: 0 auto; /* Centrar las tarjetas */
+  }
+
+  .menu {
+    top: 50px; /* Ajustar la posición del menú */
+    right: 10px;
+    width: 80%; /* Hacer el menú más ancho */
+  }
+}
+    /* Modo oscuro */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    /* Menú hamburguesa */
+    .menu-container {
+  padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      --background: rgb(255,95,249);
+background: linear-gradient(90deg, rgb(255, 0, 247) 33%, rgb(0, 47, 255) 65%);
+    }
+    .menu {
+      color: black;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: #5c5c5c;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      font-size: 18px;
+      text-align: center;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    .menu a:hover {
+      color: #0212f3;
+    }
+
+    /* Botón hamburguesa */
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      width: 30px;
+      height: 3px;
+      background-color: rgb(0, 0, 0);
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    /* Animación del botón */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Mostrar menú */
+    .menu.active {
+      display: flex;
+    }
+
+    /* Estilos de las tarjetas */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      --background: rgb(255,95,249);
+      background: linear-gradient(90deg, rgba(255,95,249,1) 33%, rgba(0,206,255,1) 65%);
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(64, 0, 107, 0.979);
+      margin-left: 60px;
+      overflow: hidden;
+      text-align: center;
+      width: 90%; /* Ajustar el ancho */
+      margin: 0 auto; /* Centrar las tarjetas */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      
+    }
+
+    .card:hover {
+      transform: scale(1.10);
+      box-shadow: 0 10px 20px rgb(44, 0, 85);
+    }
+
+    .card img {
+      width: 100%;
+  height: auto; /* Mantener la proporción de la imagen */
+  max-height: 250px; /* Limitar la altura máxima */
+  object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 15px 0 10px;
+      font-size: 1.2rem;
+      color: black;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: black;
+      padding: 0 15px 15px;
+    }
+
+    h3 {
+      color: black;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-decoration: none;
+    }
+
+    .btn-home {
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 16px;
+      width: 100%;
+    }
+    /* Footer */
+    footer {
+  background-color: #333;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 10px 0;
+}
+
+    footer a {
+      color: rgb(234, 0, 255);
+      text-decoration: underline;
+    }
+    .gojo-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Hace la imagen circular */
+  object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+  border: 2px solid white; /* Añade un borde blanco */
+}
+.nosotros {
+  padding: 5px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+.titulo-productos {
+text-align: center;
+background-color: white;
+opacity: 0.8;
+border-radius: 5px;
+padding: 1px;
+
+}
+
+  </style>
+</head>
+<body>
+
+
+
+  <!-- Menú hamburguesa -->
+  <header class="menu-container">
+    <img src="y.jpg"  class="gojo-img" >
+    <h1> 🧁⋆ 🍪 🎂   𝒟𝑒𝓁𝒾𝒸𝒾𝒶𝓈 𝒵𝒶𝓇𝒶𝓉𝑒   🎂 🍪 ⋆🧁 </h1>
+    <div style="display: flex; align-items: center;">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    <nav class="menu">
+      <a href="#Productos">𝙿𝚛𝚘𝚍𝚞𝚌𝚝𝚘𝚜</a>
+      <a href="#nosotros">𝘕𝘰𝘴𝘰𝘵𝘳𝘰𝘴</a>
+      <a href="#contacto">𝘊𝘰𝘯𝘵𝘢𝘤𝘵𝘰</a>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+ <div class="titulo-productos"><h1>Nuestros Productos</h1></div>
+  <div class="container">
+    <!-- Tarjetas -->
+    <div class ="card" id="Productos">
+      <img src="7.jpg" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn-home">
+     Mas Informacion📞
+   </a>
+      </a>
+    </div>
+    <div class="card">
+      <img src="9.jpg" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="btn-home">
+  Mas Informacion📞
+</a>
+      </a>
+    </div>
+    <div class="card">
+      <img src="99.jpg" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn-home">
+     Mas Informacion📞
+   </a>
+      </a>
+    </div>
+    <div class="card">
+      <img src="437220297_1208608850103857_2496177510627142196_n.webp" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn-home">
+     Mas Informacion📞
+   </a>
+      </a>
+    </div>
+    <div class="card">
+      <img src="Imagen de WhatsApp 2025-02-19 a las 15.41.25_3d3a8b64.jpg" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn-home">
+     Mas Informacion📞
+   </a>
+      </a>
+    </div>
+    <div class="card">
+      <img src="477610149_18017333867664504_2085799933523882408_n.webp" alt="Imagen 1">
+      <h3>Tortas Basicas</h3>
+      <p>Precio por Encargo</p>
+      <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="btn-home">
+     Mas Informacion📞
+   </a>
+      </a>
+    </div>
+<div class="card">
+  <img src="3.jpg" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="5.jpg" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+target="_blank" 
+rel="noopener noreferrer" 
+class="btn-home">
+Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="9182.jpg" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="446538640_992235075894383_7052074728820899096_n.webp" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="435421974_435450195521425_7203777177514187805_n.webp" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="3.webp" alt="Imagen 4">
+  <h3>Tortas Personalizadas <br>A tu gusto</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="mi.jpg" alt="Imagen 2">
+  <h3>Tortas para Festividades</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+
+<div class="card">
+  <img src="1.webp" alt="Imagen 2">
+  <h3>Tortas para Festividades</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="5.webp" alt="Imagen 2">
+  <h3>Tortas para Festividades</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+
+<div class="card">
+  <img src="Imagen de WhatsApp 2025-02-20 a las 15.51.55_279e3c84.jpg" alt="Imagen 2">
+  <h3>Cupcakes</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="9.webp" alt="Imagen 2">
+  <h3>Gelatinas</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+<div class="card">
+  <img src="alf.jpg" alt="Imagen 2">
+  <h3>Alfajores</h3>
+  <p>Precio por Encargo</p>
+  <a href="https://wa.me/584248357106?text=Hola,%20Quiero%20más%20Información%20Sobre%20Este%20Producto" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="btn-home">
+ Mas Informacion📞
+</a>
+  </a>
+</div>
+
+ </div>
+ 
+ <section id="nosotros" class="nosotros">
+  <h2>Sobre Nosotros</h2>
+  <p>𝙀𝙣 𝓓𝓮𝓵𝓲𝓬𝓲𝓪𝓼 𝓩𝓪𝓻𝓪𝓽𝓮 𝙣𝙤𝙨 𝙖𝙥𝙖𝙨𝙞𝙤𝙣𝙖 𝙘𝙧𝙚𝙖𝙧 𝙥𝙤𝙨𝙩𝙧𝙚𝙨 𝙦𝙪𝙚 𝙚𝙣𝙙𝙪𝙡𝙘𝙚𝙣 𝙩𝙪𝙨 𝙢𝙤𝙢𝙚𝙣𝙩𝙤𝙨 𝙚𝙨𝙥𝙚𝙘𝙞𝙖𝙡𝙚𝙨. <br>𝙐𝙩𝙞𝙡𝙞𝙯𝙖𝙢𝙤𝙨 𝙞𝙣𝙜𝙧𝙚𝙙𝙞𝙚𝙣𝙩𝙚𝙨 𝙛𝙧𝙚𝙨𝙘𝙤𝙨 𝙮 𝙙𝙚 𝙖𝙡𝙩𝙖 𝙘𝙖𝙡𝙞𝙙𝙖𝙙 𝙥𝙖𝙧𝙖 𝙜𝙖𝙧𝙖𝙣𝙩𝙞𝙯𝙖𝙧 𝙚𝙡 𝙢𝙚𝙟𝙤𝙧 𝙨𝙖𝙗𝙤𝙧,𝘼 𝙩𝙪 𝙜𝙪𝙨𝙩𝙤 𝙮 𝙚𝙡𝙚𝙘𝙘𝙞𝙤𝙣.</p>
+</section>
+   <!-- Footer -->
+    <section id="contacto">
+   <footer>
+    <p>&copy; Delicias Zarate,¡Un Toque De Dulzura🎂🧁!</p>
+    <p>Síguenos en:
+      <a href="https://www.instagram.com/deliciaszarate/">Instagram</a>
+    </p>
+  </footer>
+</section>
+  <script>
+    // Lógica para el menú hamburguesa
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
+
+  </script>
+</body>
+</html>
